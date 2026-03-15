@@ -1,0 +1,123 @@
+/* NAVBAR CONTAINER */
+
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 85%;
+  max-width: 1200px;
+
+  background: #ff6a00;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 40px;
+
+  border: 3px solid black; /* thick black border */
+  border-radius: 14px;
+
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+
+  backdrop-filter: blur(8px);
+
+  transition: all 0.3s ease;
+}
+
+/* FLOATY EFFECT */
+
+.navbar:hover {
+  transform: translateX(-50%) scale(1.03);
+}
+
+/* LOGO */
+
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* NAV LINKS */
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links li {
+  cursor: pointer;
+  font-size: 15px;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+/* HOVER ZOOM */
+
+.nav-links li:hover {
+  transform: scale(1.15);
+}
+
+/* UNDERLINE EFFECT */
+
+.nav-links li::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  transition: width 0.3s;
+}
+
+.nav-links li:hover::after {
+  width: 100%;
+}
+
+/* ACTION BUTTONS */
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* OUTLINE BUTTON */
+
+.outline {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.outline:hover {
+  background: white;
+  color: #ff6a00;
+  transform: scale(1.08);
+}
+
+/* PRIMARY BUTTON */
+
+.primary {
+  background: white;
+  color: #ff6a00;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.primary:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}

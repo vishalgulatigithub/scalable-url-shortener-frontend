@@ -7,12 +7,18 @@ export default function Hero() {
   const [shortUrl, setShortUrl] = useState("");
   const [loading, setLoading] = useState(false);
 
+
+  const [copied, setCopied] = useState(false);
+
+
   const handleSubmit = async () => {
 
     if (!url) return;
 
     setLoading(true);
     setShortUrl("");
+
+    setCopied(false);
 
     try {
 
@@ -29,12 +35,13 @@ export default function Hero() {
         }
       );
 
-      const data = await response.json();
+      const shortUrl = await response.text();
 
-      console.log(data);
+      console.log("Short URL from API:", shortUrl);
+
 
       // show full short URL string
-      setShortUrl(data.shortUrl);
+      setShortUrl(shortUrl);
 
     } catch (error) {
       console.error("Error shortening URL", error);
@@ -44,8 +51,12 @@ export default function Hero() {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(shortUrl);
-  };
+      navigator.clipboard.writeText(shortUrl);
+      const fullUrl = `https://scalable-url-shortening-service.onrender.com/${shortUrl}`;
+      navigator.clipboard.writeText(fullUrl);
+      setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+    };
 
   return (
     <section className="hero">
@@ -89,33 +100,22 @@ export default function Hero() {
           {/* Result appears only after response */}
 
           {shortUrl && (
-
-            <div className="result-box">
-
+            <div className="result-box orange-box">
               <p className="result-label">Your shortened URL</p>
-
               <div className="result-row">
-
                 <a
-                  href={shortUrl}
+                  href={`https://scalable-url-shortening-service.onrender.com/${shortUrl}`}
                   target="_blank"
                   rel="noreferrer"
                   className="short-link"
                 >
-                  {shortUrl}
+                  {`https://scalable-url-shortening-service.onrender.com/${shortUrl}`}
                 </a>
-
-                <button
-                  className="copy-btn"
-                  onClick={copyToClipboard}
-                >
-                  Copy
+                <button className="copy-btn" onClick={copyToClipboard}>
+                  {copied ? "Copied!" : "Copy"}
                 </button>
-
               </div>
-
             </div>
-
           )}
 
         </div>
